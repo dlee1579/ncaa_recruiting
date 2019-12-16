@@ -9,6 +9,7 @@ class player(object):
         self.url = url
         self.offers = []
         self.offers_url = ""
+        self.team_name = ""
 
     def get_offers(self):
         header = {
@@ -23,7 +24,8 @@ class player(object):
         r = requests.get(self.offers_url, headers=header)
         # moving onto new url to extract offers
         data = r.text
-        soup = BeautifulSoup(data)
+        soup = BeautifulSoup(data, features="html.parser")
+        self.team_name = soup.find("li", class_="institution-name")
         block = soup.find("ul", class_="recruit-interest-index_lst")
         li = block.find_all("div", class_="left")
         offers_list = []
@@ -32,5 +34,7 @@ class player(object):
                 offers_list.append(line.a.text[0:len(line.a.text) - 1])
             else:
                 offers_list.append(line.a.text)
+        if self.team_name in offers_list:
+            offers_list.remove(self.team_name)
         self.offers = offers_list
         return offers_list
