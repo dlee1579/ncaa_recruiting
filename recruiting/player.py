@@ -18,7 +18,7 @@ class player(object):
         }
         r = requests.get(self.url, headers=header)
         data = r.text
-        soup = BeautifulSoup(data)
+        soup = BeautifulSoup(data, features="html.parser")
         self.offers_url = soup.find("a", class_="college-comp__view-all").get("href")
 
         r = requests.get(self.offers_url, headers=header)

@@ -4,21 +4,19 @@ import recruiting.player as player
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    # gt19 = tr.team_recruits()
-    # df = gt19.create_table()
-    # df = gt19.populate_offers()
-    # print(df)
+    # teams_df = pd.read_csv("teams_list.csv")
+    # teams_list = teams_df["Teams"]
+    # for team_class in teams_list:
+    #     print("Collecting data for {}".format(team_class))
+    #     team = tr.team_recruits(team_class)
+    #     df = team.populate_offers()
+        # df.to_csv("{} commit data.csv".format(team.team_name.lower()))
+    # ax = team.count_offers().sort_values(by="OfferCount", ascending=False).head(15).plot.bar(x='Team', y='OfferCount', rot=90)
+    # plt.title("# of {} Commits with Offers from:".format(team.team_name))
+    # plt.show()
 
-    # print(recruiting.__dict__)
-    # print(requests)
-    # team = tr.team_recruits(url="https://247sports.com/college/texas/Season/2020-Football/Commits/")
-    team = tr.team_recruits()
-    # print(team.team_name)
+    team = tr.team_recruits("lsu")
     df = team.populate_offers()
-    # df.to_csv("{} commit data.csv".format(team.team_name.lower()))
-    #
-    # print(df)
-    # print(team.count_offers().sort_values(by="OfferCount", ascending=False))
     ax = team.count_offers().sort_values(by="OfferCount", ascending=False).head(15).plot.bar(x='Team', y='OfferCount', rot=90)
     plt.title("# of {} Commits with Offers from:".format(team.team_name))
     plt.show()

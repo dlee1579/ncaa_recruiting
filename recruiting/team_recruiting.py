@@ -3,8 +3,10 @@ from recruiting.player import *
 
 
 class team_recruits(object):
-    def __init__(self, url="https://247sports.com/college/georgia-tech/Season/2020-Football/Commits/"):
-        self.team_name = ""
+    def __init__(self, team_name="Georgia Tech", year=2020):
+        self.team_name = team_name
+        self.year = year
+        url = "https://247sports.com/college/{}/Season/{}-Football/Commits/".format(team_name.lower(), year).replace(" ", "-")
         columns = ["name", "url", "position", "score", "hometown", "offers"]
         names = []
         urls = []
@@ -15,13 +17,24 @@ class team_recruits(object):
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest"
         }
+        # try:
         r = requests.get(url, headers=header)
+        # except AttributeError:
+        #     print("Invalid team name. Please enter appropriate team name.")
+            # sys.exit(1)
+
         self.df = pd.DataFrame(columns=columns)
 
         data = r.text
         soup = BeautifulSoup(data, features="html.parser")
 
-        self.team_name = soup.find("a", class_="plldwn_team tltp_click tltp_bm").text
+        try:
+            self.team_name = soup.find("a", class_="plldwn_team tltp_click tltp_bm").text
+        except AttributeError:
+            print("Invalid team name. Please enter appropriate team name.")
+            # sys.exit(1)
+            return None
+
         while self.team_name.endswith(" "):
             self.team_name = self.team_name[0:len(self.team_name)-1]
 
@@ -51,7 +64,7 @@ class team_recruits(object):
         os.chdir("../team recruiting raw data")
         team_data_file = "{} commit data.csv".format(self.team_name.lower())
         if team_data_file in os.listdir():
-            print("Bypassing offer data collection because csv file already exists.")
+            print("Bypassing team data collection because csv file already exists.")
             team_data = pd.read_csv(team_data_file)
             team_data.drop(columns=team_data.columns[0], inplace=True)
             team_data["offers"] = pd.eval(team_data["offers"])
@@ -63,13 +76,13 @@ class team_recruits(object):
                 recruit.url = self.df.iloc[i].url
                 self.df.iloc[i].offers = recruit.get_offers()
                 print(self.df.iloc[i])
+            self.df.to_csv("{} commit data.csv".format(self.team_name.lower()))
             return self.df
 
     def count_offers(self):
         all_offers = []
         df = pd.DataFrame(columns=["Team", "OfferCount"])
         for i in self.df.offers:
-            print(i)
             if type(i) != float:
                 all_offers += i
         #         all_offers.remove("Georgia Tech")
