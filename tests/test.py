@@ -15,7 +15,7 @@ if __name__ == "__main__":
     # plt.title("# of {} Commits with Offers from:".format(team.team_name))
     # plt.show()
 
-    team = tr.team_recruits("lsu")
+    team = tr.team_recruits("georgia tech")
     df = team.populate_offers()
     ax = team.count_offers().sort_values(by="OfferCount", ascending=False).head(15).plot.bar(x='Team', y='OfferCount', rot=90)
     plt.title("# of {} Commits with Offers from:".format(team.team_name))

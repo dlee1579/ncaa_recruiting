@@ -7,12 +7,13 @@ class team_recruits(object):
         self.team_name = team_name
         self.year = year
         url = "https://247sports.com/college/{}/Season/{}-Football/Commits/".format(team_name.lower(), year).replace(" ", "-")
-        columns = ["name", "url", "position", "score", "hometown", "offers"]
+        columns = ["name", "url", "position", "score", "hometown", "offers", "state"]
         names = []
         urls = []
         scores = []
         positions = []
         hometowns = []
+        states = []
         header = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest"
@@ -45,6 +46,7 @@ class team_recruits(object):
             score = entry.find("span", class_="score").text
             position = entry.find("div", class_="position").text
             hometown = entry.find("span", class_="meta").text
+            state = hometown[hometown.find(", ")+2:hometown.find(", ")+4]
             if position[0] == " ":
                 position = position[1:]
 
@@ -53,12 +55,14 @@ class team_recruits(object):
             scores.append(score)
             positions.append(position)
             hometowns.append(hometown)
+            states.append(state)
 
         self.df["name"] = names
         self.df["url"] = urls
         self.df["score"] = scores
         self.df["position"] = positions
         self.df["hometown"] = hometowns
+        self.df["state"] = states
 
     def populate_offers(self):
         os.chdir("../team recruiting raw data")

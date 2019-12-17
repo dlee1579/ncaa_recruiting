@@ -1,51 +1,51 @@
-Teams,
-Clemson,
-Alabama,
-LSU,
-Ohio State,
-Texas A&M,
-Georgia,
-Texas,
-Florida,
-Auburn,
-Oklahoma,
-Michigan,
-Penn State,
-Notre Dame,
-Washington,
-Miami,
-Oregon,
-North Carolina,
-South Carolina,
-Tennessee,
-Stanford,
-Nebraska,
-Mississippi State,
-Georgia Tech,
-Kentucky,
-Iowa,
-Florida State,
-Wisconsin,
-UCLA,
-Louisville,
-Northwestern,
-Minnesota,
-California,
-Colorado,
-Purdue,
-Maryland,
-NC State,
-Michigan State,
-Iowa State,
-Pittsburgh,
-TCU,
-Kansas,
-Oklahoma State,
-Texas Tech,
-West Virginia,
-Ole Miss,
-Arizona State,
-Oregon State,
-Kansas State,
-Indiana,
-Virginia,
+,Teams,Conference
+0,Clemson,ACC
+1,Alabama,SEC
+2,LSU,SEC
+3,Ohio State,Big Ten
+4,Texas A&M,SEC
+5,Georgia,SEC
+6,Texas,Big 12
+7,Florida,SEC
+8,Auburn,SEC
+9,Oklahoma,Big 12
+10,Michigan,Big Ten
+11,Penn State,Big Ten
+12,Notre Dame,Indep
+13,Washington,Pac-12
+14,Miami,ACC
+15,Oregon,Pac-12
+16,North Carolina,ACC
+17,South Carolina,SEC
+18,Tennessee,SEC
+19,Stanford,Pac-12
+20,Nebraska,Big Ten
+21,Mississippi State,SEC
+22,Georgia Tech,ACC
+23,Kentucky,SEC
+24,Iowa,Big Ten
+25,Florida State,ACC
+26,Wisconsin,Big Ten
+27,UCLA,Pac-12
+28,Louisville,ACC
+29,Northwestern,Big Ten
+30,Minnesota,Big Ten
+31,California,Pac-12
+32,Colorado,Pac-12
+33,Purdue,Big Ten
+34,Maryland,Big 12
+35,NC State,ACC
+36,Michigan State,Big Ten
+37,Iowa State,Big 12
+38,Pittsburgh,ACC
+39,TCU,Big 12
+40,Kansas,Big 12
+41,Oklahoma State,Big 12
+42,Texas Tech,Big 12
+43,West Virginia,Big 12
+44,Ole Miss,SEC
+45,Arizona State,Pac-12
+46,Oregon State,Pac-12
+47,Kansas State,Big-12
+48,Indiana,Big Ten
+49,Virginia,ACC
